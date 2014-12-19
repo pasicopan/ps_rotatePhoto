@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="pansijia_gz" />
+    <meta name="email" content="pasico@163.com" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <!-- 忽略将页面中的数字识别为电话号码 -->
+    <meta content="telephone=no" name="format-detection" />
+    <!-- 全屏应用模式 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <style type="text/css">
+      *{margin: 0;padding: 0;}
+      html,body{height: 100%;}
+    </style>
+    <title>自定义调整相片</title>
+</head>
+
+<body>
+<p>使用zepto，require，和exif 等库</p>
+<p>跟俊照片exif 信息判断拍照方向，然后根据配置参数生成4个方向旋转后的img 对象</p>
+<p>自定义长边和短边，如果只设置一边，则另外一边会按比例调整</p>
+<input type="file" id="upload-file-btn" accept="image/*" />
+<img id="photo"/>
+              
+</body>
+<script src="zepto.min.js"></script>
+<script src="require.js"></script>
+<script>
+require(['rotatePhoto.js'], function(rotatePhotoM) {
+    var $uploadFileBtn = $('#upload-file-btn')
+    var $photo = $('#photo')
+    $uploadFileBtn.bind('change',rotateInit)
+    function rotateInit(e){
+        e.preventDefault();
+        rotatePhotoM.init({
+            inputElement:$uploadFileBtn.get(0),
+            image:$photo.get(0),
+            orientation:-1,//0 1 2 -1
+            shortSide:250,
+            // longSide:300,
+            callback:function(){
+              $uploadFileBtn.hide();
+            }
+        })
+    }
+    
+})
+</script>
+</html>
