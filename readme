@@ -7,3 +7,18 @@
 使用zepto，require，和exif 等库  
 跟俊照片exif 信息判断拍照方向，然后根据配置参数生成4个方向旋转后的img 对象  
 自定义长边和短边，如果只设置一边，则另外一边会按比例调整  
+
+demo
+=====
+```javascript
+rotatePhotoM.init({
+    inputElement:/**/,
+    image:/**/,
+    orientation:-1,//0 1 2 -1  一共4个方向
+    shortSide:250,
+    // longSide:300,
+    callback:function(){
+      // do some thing
+    }
+})
+```
